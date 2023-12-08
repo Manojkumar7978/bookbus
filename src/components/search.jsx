@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {Box,Input,Button} from '@chakra-ui/react'
 import axios from 'axios'
+import { myContext } from './context'
+
 async function fetchBus(input){
     try {
         let res=await axios.post(`https://rightpayonline.com/bus/getAvailableServices`,input)
@@ -16,16 +18,22 @@ export default function Search() {
         destinationId:null,
         doj:null
     })
+    let {setbusList}=useContext(myContext)
 
     function handelSearch(){
         fetchBus(input)
         .then((res)=>{
-            console.log(res)
+            if(res.status==='success'){
+              setbusList([...res.services])
+            }else if(res.status==='fail'){
+              setbusList(res.message)
+            }
         })
         .catch((err)=>{
             console.log(err)
         })
     }
+    
   return (
     <Box>
         <Box display={'flex'}

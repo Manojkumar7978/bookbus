@@ -5,11 +5,11 @@
 
 ## Features
 - Search for bus
-![Searching](../bookbus/src/assests/searching.PNG)
+![Searching](./src/assests/searching.PNG)
 - See seat details for buses
-![Bus list](../bookbus/src/assests/buslisting.PNG)
-![Seat Details](../bookbus/src/assests/seats.PNG)
-![mobile view](../bookbus/src/assests/mobile%20view.jpg)
+![Bus list](./src/assests/buslisting.PNG)
+![Seat Details](./src/assests/seats.PNG)
+![mobile view](./src/assests/mobile%20view.jpg)
 
 
 

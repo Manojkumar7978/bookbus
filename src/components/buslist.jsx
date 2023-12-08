@@ -12,11 +12,11 @@ export default function Buslist() {
       
      {
       Array.isArray(busList) ? 
-      <Box bg={'gray.200'} w={'100%'} p={[5,10,20]}>
+      <Box bg={'gray.200'} w={'100%'} p={5}>
       {
         busList.map((el,ind)=>{
           return <>
-          <Buscard el={el}/>
+          <Buscard key={el.Service_key} el={el}/>
           </>
         })
       }

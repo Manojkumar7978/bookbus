@@ -9,7 +9,7 @@ function App() {
     <Box maxW={'1540px'} className="App" m={'auto'}>
       <Header />
       <Search />
-      <Stack bg={'gray.200'} mt={100}>
+      <Stack bg={'gray.200'}>
       <Buslist/>
       </Stack>
     </Box>

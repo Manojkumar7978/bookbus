@@ -6,6 +6,7 @@ import { myContext } from './context'
 async function fetchBus(input){
     try {
         let res=await axios.post(`https://rightpayonline.com/bus/getAvailableServices`,input)
+        console.log(res)
         return res.data
     } catch (error) {
         return error
@@ -18,22 +19,24 @@ export default function Search() {
         destinationId:null,
         doj:null
     })
-    let {setbusList}=useContext(myContext)
+    let {setbusList,busList}=useContext(myContext)
 
     function handelSearch(){
+      setbusList('loder')
         fetchBus(input)
         .then((res)=>{
             if(res.status==='success'){
               setbusList([...res.services])
             }else if(res.status==='fail'){
               setbusList(res.message)
+            }else{
+              setbusList('Please Enter Correct Details')
             }
         })
         .catch((err)=>{
-            console.log(err)
+            return err
         })
     }
-    
   return (
     <Box>
         <Box display={'flex'}
@@ -41,6 +44,7 @@ export default function Search() {
     gap={10}
     m={[5,10,10]}
     justifyContent={'center'}
+    alignItems={'center'}
     border={'1px solid gray'}
     borderRadius={5}
     p={5}
@@ -65,12 +69,7 @@ export default function Search() {
             doj:e.target.value
         })
       }} type='date'/>
-
-    </Box>
-    <Button 
-   position={'absolute'}
-   left={'50%'}
-   transform={'translateX(-50%)'}
+       <Button 
    colorScheme='blue'
    fontSize={'xx-large'}
    borderRadius={50}
@@ -79,6 +78,9 @@ export default function Search() {
     handelSearch()
    }}
     >Search</Button>
+
+    </Box>
+   
     </Box>
   )
 }
